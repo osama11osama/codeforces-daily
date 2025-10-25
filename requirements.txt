@@ -1,0 +1,5 @@
+@"
+black
+ruff
+pytest
+"@ | Out-File -Encoding UTF8 requirements.txt
