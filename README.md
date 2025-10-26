@@ -1,182 +1,209 @@
-# 🧠 Codeforces Daily Automation Framework
+# 🧠 Codeforces Daily — Automated Challenge Framework
 
-This repository contains my **daily Codeforces problem-solving practice**, built using a custom **Python automation framework**.
-
-The goal is to **maintain consistency**, **track progress**, and **automate repetitive setup tasks** while ensuring **clean, tested, and high-quality solutions**.
+A lightweight, automated structure for solving and testing **Codeforces** problems — professionally organized and CI-ready.
 
 ---
 
 ## 🚀 What Is This Project?
 
-This is not just a folder of solutions — it’s a **mini development framework** designed to:
+This is not just a collection of solutions — it’s a **mini development & testing framework** for competitive programming.  
+It helps you solve problems efficiently, stay organized, and prove consistent progress.
+
+### 💡 Features
 
 ✅ Automatically create a structured folder for each new Codeforces problem  
-✅ Provide ready-to-use templates for solutions and tests  
-✅ Run automated sample tests locally with `pytest`  
-✅ Enforce clean code style using `black` and `ruff`  
-✅ Verify everything with GitHub Actions (CI) on every push  
-✅ Document daily progress in a professional, reproducible way  
+✅ Include ready-to-use templates for solution (`main.py`) and tests (`test_ID.py`)  
+✅ Auto-discover all sample input/output files under `samples/`  
+✅ Run and verify **all samples** using `pytest` — one test per sample  
+✅ Enforce clean code style with `black` and `ruff`  
+✅ Optional CI validation with GitHub Actions  
+✅ Easy version control via Git and GitHub  
+✅ Daily problem folders organized by date for clear progress tracking  
 
 ---
 
-## 🌿 Project Structure
+## 🧩 Project Structure
 
-```
 codeforces-daily/
-├─ .github/workflows/ci.yml      # GitHub CI automation
-├─ scripts/                      # Automation utilities
-│  └─ new_challenge.py           # Scaffolds new problem folders
-├─ templates/                    # Boilerplate templates for new problems
-│  ├─ main.py                    # Starter code for problem solutions
-│  └─ test_samples.py            # Template for automated sample tests
-├─ 2025/                         # Yearly solved problems (auto-created)
-│  └─ 10-26/4A_Watermelon/       # Example challenge folder
-│     ├─ main.py                 # Solution file
-│     ├─ test_samples.py         # Test file for sample cases
-│     └─ samples/                # Input/output examples
-├─ pyproject.toml                # Formatter, linter, and pytest config
-├─ requirements.txt              # Dependencies (black, ruff, pytest)
-├─ .gitignore                    # Ignored files/folders
-└─ README.md                     # Project documentation (this file)
-```
+│
+├── .github/workflows/ci.yml              # GitHub CI automation (optional)
+│
+├── scripts/                              # Automation utilities
+│   └── new_challenge.py                  # Scaffolds new problem folders automatically
+│
+├── templates/                            # Boilerplate templates for new problems
+│   ├── main.py                           # Starter code for problem solutions
+│   └── template_test_samples.py          # Universal test template for all problems
+│
+├── 2025/                                 # Yearly folders (auto-created)
+│   └── 10-26/
+│       ├── 4A_Watermelon/                # Example problem folder
+│       │   ├── main.py                   # Your solution code
+│       │   ├── test_4A.py                # Auto-generated test file
+│       │   └── samples/                  # Input/output samples for testing
+│       │       ├── 1.in
+│       │       ├── 1.out
+│       │       ├── 2.in
+│       │       └── 2.out
+│       │
+│       └── 508A_Pasha_and_Pixels/        # Another example problem
+│           ├── main.py
+│           ├── test_508A.py
+│           └── samples/
+│               ├── 1.in / 1.out
+│               ├── 2.in / 2.out
+│               └── ...
+│
+├── .gitignore                            # Ignore local-only files (.venv, cache, notes, etc.)
+├── pyproject.toml                        # Project configuration (pytest, ruff, black)
+├── requirements.txt                      # Python dependencies
+└── README.md                             # You are here
 
 ---
 
-## ⚙️ How It Works
+## 🧠 How It Works
 
-1. **scripts/new_challenge.py**  
-   Creates a new folder with today’s date, copies templates, and prepares sample files.
+### 1️⃣ Create a new challenge
 
-   Example:
-   ```
-   python scripts/new_challenge.py --id 4A --title "Watermelon"
-   ```
+From your project root:
+python scripts/new_challenge.py --id 508A --title "Pasha and Pixels"
 
-   Generates:
-   ```
-   2025/10-26/4A_Watermelon/
-   ├─ main.py
-   ├─ test_samples.py
-   └─ samples/
-       ├─ 1.in
-       └─ 1.out
-   ```
-
-2. **templates/main.py** — Starter code for every new problem  
-3. **templates/test_samples.py** — Auto-tests your solution using sample I/O  
-4. **pytest** — Runs all tests and checks your output matches expected results  
-5. **GitHub Actions** — Automatically lints, formats, and tests every commit  
+✅ A new folder is automatically created:
+2025/10-26/508A_Pasha_and_Pixels/
+  ├── main.py
+  ├── test_508A.py
+  └── samples/
 
 ---
 
-## 📘 Example: Solve and Test a Challenge
+### 2️⃣ Add sample test cases
 
-1️⃣ Scaffold today’s problem:
-```
-python scripts/new_challenge.py --id 4A --title "Watermelon"
-```
+Put the official Codeforces samples into the `samples/` folder:
+samples/
+  1.in
+  1.out
+  2.in
+  2.out
 
-2️⃣ Add sample I/O:  
-`samples/1.in`
-```
-8
-```
-`samples/1.out`
-```
-YES
-```
+---
 
-3️⃣ Write the solution (`main.py`)
-```
+### 3️⃣ Implement your solution
+
+Edit the generated `main.py`:
+#!/usr/bin/env python3
 import sys
 
 def solve():
-    n = int(sys.stdin.read().strip())
-    print("YES" if n % 2 == 0 and n > 2 else "NO")
+    data = sys.stdin.read().strip().split()
+    # TODO: implement the solution here
+    print(data)
 
 if __name__ == "__main__":
     solve()
-```
-
-4️⃣ Test it:
-```
-pytest
-```
-
-✅ Output:
-```
-collected 1 item
-.
-1 passed in 0.03s
-```
-
-5️⃣ Push to GitHub:
-```
-git add .
-git commit -m "feat(4A): Watermelon — solved"
-git push
-```
 
 ---
 
-## 🧪 Continuous Integration (CI)
+### 4️⃣ Test automatically
 
-Every commit triggers this workflow automatically:
+Run tests with:
+pytest 2025/10-26/508A_Pasha_and_Pixels -q
 
-![CI](https://github.com/osama11osama/codeforces-daily/actions/workflows/ci.yml/badge.svg)
+Each sample is tested independently:
+test_508A.py::test_samples[1.in] PASSED
+test_508A.py::test_samples[2.in] FAILED
 
-Checks performed:
-- `black` — Formatting  
-- `ruff` — Linting  
-- `pytest` — Sample tests  
-
----
-
-## 🧰 Tools and Technologies
-
-| Purpose | Tool |
-|----------|------|
-| Language | Python 3.12 |
-| Testing | Pytest |
-| Linting | Ruff |
-| Formatting | Black |
-| Automation | GitHub Actions |
-| Version Control | Git |
-| IDE | Visual Studio Code |
+You can also run **all** problems:
+pytest -q
 
 ---
 
-## 🎯 Purpose and Goals
+## 🧰 Local Development Notes
 
-This framework helps me:
+If you’re working locally:
 
-- Stay consistent with daily problem solving  
-- Build habits of testing and clean code  
-- Demonstrate real-world engineering practices  
-- Showcase progress publicly on GitHub  
+### Create and activate a virtual environment
+python -m venv .venv
+.\.venv\Scripts ctivate   # Windows
+source .venv/bin/activate  # Linux / macOS
 
-Over time, this becomes a **portfolio of disciplined problem-solving and automation skills**.
+### Run a script manually
+python main.py < samples/1.in
 
----
-
-## 📅 Daily Workflow Summary
-
-```
-python scripts/new_challenge.py --id <ProblemID> --title "<Title>"
-# edit main.py, add samples, run pytest
-git add .
-git commit -m "feat(<ID>): <Title> — solved"
-git push
-```
-
-Everything else (linting, testing, CI) runs automatically.
+### Deactivate
+deactivate
 
 ---
 
-## 👤 Author
+## 🧪 How Automated Testing Works
 
-**Osama Altamar**  
-Cybersecurity & Software Developer  
-[GitHub Profile](https://github.com/osama11osama)
+- Every problem has its own test file (`test_<id>.py`) generated from `template_test_samples.py`
+- `pytest` automatically finds all `samples/*.in` and runs them against your `main.py`
+- Expected output comes from matching `.out` files
+- Each sample is shown separately in test results
+- Failures show clear diffs between **expected** and **got**
 
-⭐ *If you like this project, feel free to fork or adapt it for your own problem-solving journey!*
+---
+
+## ⚙️ Pytest Configuration (pyproject.toml)
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "-q --import-mode=importlib"
+testpaths = ["2025"]
+
+This ensures:
+- Only problem folders are tested
+- Import conflicts are avoided
+- Output is clean and readable
+
+---
+
+## 🔒 Git Ignore Rules
+
+`.gitignore` excludes:
+.venv/
+__pycache__/
+*.pyc
+.cache/
+.idea/
+.vscode/
+*.local.txt
+*.private.txt
+local_*
+dev_notes.txt
+1-notes/
+
+This prevents local environment and personal files from being pushed to GitHub.
+
+---
+
+## 🧱 Why This Setup Matters
+
+- Keeps every day’s problem **isolated**, clean, and reproducible  
+- Makes progress **visible** and testable via CI  
+- Builds a verifiable public record of consistent problem-solving  
+- Improves code quality with enforced testing and style checks  
+- Scales perfectly for hundreds of problems  
+
+---
+
+## 🏁 Summary Workflow
+
+| Step | Command | Description |
+|------|----------|-------------|
+| 🆕 Scaffold | `python scripts/new_challenge.py --id 123A --title "New Problem"` | Create new problem folder |
+| 🧩 Add Samples | place `.in` / `.out` files in `/samples` | Set test data |
+| 🧠 Solve | edit `main.py` | Write your solution |
+| ✅ Test | `pytest 2025/MM-DD/123A_New_Problem -q` | Run sample tests |
+| 🚀 Push | `git add . && git commit -m "solve: 123A New Problem" && git push` | Publish progress |
+
+---
+
+### 🧑‍💻 Author
+Built and maintained by **Osama**  
+GitHub: [osama11osama](https://github.com/osama11osama)
+
+---
+
+### ⭐ Goal
+> Automate daily problem-solving, build discipline, and demonstrate continuous algorithmic progress through code and tests.

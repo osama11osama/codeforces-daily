@@ -23,7 +23,7 @@ def main():
     tmpl = root / "templates"
 
     shutil.copy(tmpl / "main.py", prob_dir / "main.py")
-    shutil.copy(tmpl / "test_samples.py", prob_dir / "test_samples.py")
+    shutil.copy(tmpl / "template_test_samples.py", prob_dir / f"test_{args.id}.py")
 
     samples = prob_dir / "samples"
     samples.mkdir(exist_ok=True)

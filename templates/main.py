@@ -3,7 +3,7 @@ import sys
 
 
 def solve():
-    data = sys.stdin.read().strip().split()
+    data = sys.stdin.read().strip().split()  # noqa: F841
     # TODO: implement using data
     # print(answer)
 

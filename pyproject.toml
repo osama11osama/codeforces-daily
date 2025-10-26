@@ -8,6 +8,9 @@ extend-select = ["I"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
-addopts = "-q"
+addopts = "-q --import-mode=importlib --tb=line"
 testpaths = ["2025"]
+
+
+
 
