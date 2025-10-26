@@ -5,6 +5,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PY = sys.executable
 
+
 def run_case(folder: Path, case: Path):
     proc = subprocess.run(
         [PY, str(folder / "main.py")],
@@ -16,6 +17,7 @@ def run_case(folder: Path, case: Path):
     expected = (case.with_suffix(".out")).read_text().strip()
     got = proc.stdout.decode().strip()
     assert got == expected, f"\nExpected:\n{expected}\nGot:\n{got}\n"
+
 
 def test_samples():
     samples = sorted((HERE / "samples").glob("*.in"))

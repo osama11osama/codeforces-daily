@@ -8,6 +8,7 @@ from pathlib import Path
 def slugify(s: str) -> str:
     return "".join(c if c.isalnum() or c in ("-", "_") else "_" for c in s).strip("_")
 
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--id", required=True, help="Codeforces ID (e.g., 4A)")
@@ -32,6 +33,7 @@ def main():
 
     print(f"✅ Created {prob_dir}")
     print("   Add sample I/O in samples/ and run: pytest")
+
 
 if __name__ == "__main__":
     main()

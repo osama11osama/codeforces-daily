@@ -7,5 +7,6 @@ def solve():
     # TODO: implement using data
     # print(answer)
 
+
 if __name__ == "__main__":
     solve()
