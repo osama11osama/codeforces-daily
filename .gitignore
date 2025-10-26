@@ -1,8 +1,33 @@
-@"
+# ====================================
+# 🧠 Python Virtual Environment & Caches
+# ====================================
 .venv/
 __pycache__/
 *.pyc
 .cache/
-.idea/
+.pytest_cache/
+
+# ====================================
+# 💻 IDE / Editor Files
+# ====================================
 .vscode/
-"@ | Out-File -Encoding UTF8 .gitignore
+.idea/
+
+# ====================================
+# 🧩 Project & Personal Notes (local only)
+# ====================================
+# Individual local files
+dev_notes.txt
+venv_and_git_tips.md
+
+# Patterns for any future local/private files
+*.local.txt
+*.private.txt
+local_*
+1-notes/
+
+# ====================================
+# 🧰 OS / System Files
+# ====================================
+.DS_Store
+Thumbs.db
