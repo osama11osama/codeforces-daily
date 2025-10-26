@@ -26,38 +26,38 @@ It helps you solve problems efficiently, stay organized, and prove consistent pr
 
 codeforces-daily/
 │
-├── .github/workflows/ci.yml              # GitHub CI automation (optional)
+├── .github/workflows/ci.yml # GitHub CI automation (optional)
 │
-├── scripts/                              # Automation utilities
-│   └── new_challenge.py                  # Scaffolds new problem folders automatically
+├── scripts/ # Automation utilities
+│ └── new_challenge.py # Scaffolds new problem folders automatically
 │
-├── templates/                            # Boilerplate templates for new problems
-│   ├── main.py                           # Starter code for problem solutions
-│   └── template_test_samples.py          # Universal test template for all problems
+├── templates/ # Boilerplate templates for new problems
+│ ├── main.py # Starter code for problem solutions
+│ └── template_test_samples.py # Universal test template for all problems
 │
-├── 2025/                                 # Yearly folders (auto-created)
-│   └── 10-26/
-│       ├── 4A_Watermelon/                # Example problem folder
-│       │   ├── main.py                   # Your solution code
-│       │   ├── test_4A.py                # Auto-generated test file
-│       │   └── samples/                  # Input/output samples for testing
-│       │       ├── 1.in
-│       │       ├── 1.out
-│       │       ├── 2.in
-│       │       └── 2.out
-│       │
-│       └── 508A_Pasha_and_Pixels/        # Another example problem
-│           ├── main.py
-│           ├── test_508A.py
-│           └── samples/
-│               ├── 1.in / 1.out
-│               ├── 2.in / 2.out
-│               └── ...
+├── 2025/ # Yearly folders (auto-created)
+│ └── 10-26/
+│ ├── 4A_Watermelon/ # Example problem folder
+│ │ ├── main.py # Your solution code
+│ │ ├── test_4A.py # Auto-generated test file
+│ │ └── samples/ # Input/output samples for testing
+│ │ ├── 1.in
+│ │ ├── 1.out
+│ │ ├── 2.in
+│ │ └── 2.out
+│ │
+│ └── 508A_Pasha_and_Pixels/ # Another example problem
+│ ├── main.py
+│ ├── test_508A.py
+│ └── samples/
+│ ├── 1.in / 1.out
+│ ├── 2.in / 2.out
+│ └── ...
 │
-├── .gitignore                            # Ignore local-only files (.venv, cache, notes, etc.)
-├── pyproject.toml                        # Project configuration (pytest, ruff, black)
-├── requirements.txt                      # Python dependencies
-└── README.md                             # You are here
+├── .gitignore # Ignore local-only files (.venv, cache, notes, etc.)
+├── pyproject.toml # Project configuration (pytest, ruff, black)
+├── requirements.txt # Python dependencies
+└── README.md # You are here
 
 ---
 
@@ -66,9 +66,9 @@ codeforces-daily/
 ### 1️⃣ Create a new challenge
 
 From your project root:
-python scripts/new_challenge.py --id 508A --title "Pasha and Pixels"
+python scripts/new_challenge.py --id 508A --title "Pasha and Pixels" 
 
-✅ A new folder is automatically created:
+✅ A new folder is automatically created: the 2025 is the Year of ceration and 10-26 is the day and month- the first part of the name is the id of that chalenge and the other part is the name.
 2025/10-26/508A_Pasha_and_Pixels/
   ├── main.py
   ├── test_508A.py
@@ -105,15 +105,87 @@ if __name__ == "__main__":
 
 ### 4️⃣ Test automatically
 
-Run tests with:
+# 🧪 Automated Testing & Code Quality (CI + DevOps)
+
+Your project is designed with **continuous integration (CI)** principles in mind — meaning that every commit is automatically tested and checked on GitHub.
+
+Here’s how it works locally and in CI 👇  
+
+---
+
+## ✅ Run Local Tests
+
+To test your current problem only:
+```bash
 pytest 2025/10-26/508A_Pasha_and_Pixels -q
+```
 
-Each sample is tested independently:
-test_508A.py::test_samples[1.in] PASSED
-test_508A.py::test_samples[2.in] FAILED
+Each sample input (`.in`) is tested independently, with a clear pass/fail summary:
+```
+test_508A.py::test_sample[1.in] PASSED
+test_508A.py::test_sample[2.in] FAILED
+```
 
-You can also run **all** problems:
+To run **all** problems and verify your entire progress:
+```bash
 pytest -q
+```
+
+---
+
+## 🎨 Enforce Consistent Code Style
+
+Before pushing your work, make sure your code is clean and consistent.
+
+### 1. Format with [Black](https://black.readthedocs.io/):
+```bash
+black .
+```
+Automatically reformats all Python files according to a unified standard.  
+(*In CI, this is checked using `black --check .` — so formatting must be correct.*)
+
+### 2. Lint with [Ruff](https://docs.astral.sh/ruff/):
+```bash
+ruff check .
+```
+Detects common issues, unused imports, and deviations from PEP8.  
+Fix them using:
+```bash
+ruff check . --fix
+```
+
+---
+
+## 🧩 Combine Everything in CI (Continuous Integration)
+
+Your `.github/workflows/ci.yml` runs the same steps automatically on every push:
+
+1. ✅ Install dependencies  
+2. ✅ Check linting with `ruff`  
+3. ✅ Verify formatting with `black --check .`  
+4. ✅ Run all tests with `pytest`  
+
+If any of these fail, the GitHub Action marks the commit as ❌ failed —  
+just like a real **DevOps-style code pipeline**.
+
+---
+
+## 💡 Tip for Developers
+
+You can automate these checks **before every commit** using `pre-commit` hooks:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+This ensures:
+- Code is formatted by `black`
+- Style checked by `ruff`
+- Tests pass locally before committing
+
+---
+
 
 ---
 
