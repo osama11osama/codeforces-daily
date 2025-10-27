@@ -11,7 +11,7 @@ def solve():
         m = data[1]
         a = data[2:]
 
-        pref = 0        # running sum of a
+        pref = 0  # running sum of a
         k = 0  # running sum of t
         t_list = []
 
@@ -20,11 +20,10 @@ def solve():
             # t = int(sum(a_lsit[:i+1])/m) - k
             t = pref // m - k
             t_list.append(t)
-            k+=t
-            
+            k += t
+
         # print("n =", n, " m =", m)
         print(*t_list)
-        
 
 
 if __name__ == "__main__":

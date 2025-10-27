@@ -8,6 +8,7 @@ def ints():
         for tok in line.split():
             yield int(tok)
 
+
 def solve():
     it = ints()
     # n = next(it, None)  # not used, but read to advance
@@ -17,10 +18,10 @@ def solve():
         return
 
     pref = 0  # running sum of a's
-    k = 0     # running sum of printed t's
+    k = 0  # running sum of printed t's
     out = []  # tiny buffer to reduce write calls
 
-    for x in it:              # stream remaining a's
+    for x in it:  # stream remaining a's
         pref += x
         t = pref // m - k
         k += t
@@ -32,6 +33,7 @@ def solve():
     if out:
         sys.stdout.write(" ".join(out))
     sys.stdout.write("\n")
+
 
 if __name__ == "__main__":
     solve()
