@@ -10,7 +10,7 @@ def ints():
 
 def solve():
     it = ints()
-    n = next(it, None)  # not used, but read to advance
+    # n = next(it, None)  # not used, but read to advance
     m = next(it, None)
     if m is None:
         print(0)
